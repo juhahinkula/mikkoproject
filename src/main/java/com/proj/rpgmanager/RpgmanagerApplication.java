@@ -23,15 +23,6 @@ public class RpgmanagerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RpgmanagerApplication.class, args);
 	}
-
-	@Bean
-	public CommandLineRunner demo(CharacterRepository characterRepository, PlayerRepository playerRepository, GroupRepository groupRepository) {
-	return (args) -> {
-	
-		
-	};	
-		
-	}
 		
 		
 }

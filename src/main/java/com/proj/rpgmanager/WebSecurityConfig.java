@@ -8,10 +8,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.proj.rpgmanager.web.UserDetailServiceImpl;
+
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private UserDetailServiceImpl userDetailsService;		
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -28,8 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll();
 	}
 	
-	
-
-	
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    }	
 	
 }
